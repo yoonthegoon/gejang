@@ -1,14 +1,14 @@
 use std::fmt::{Debug, Formatter};
 use std::ops::{BitAnd, BitOr, BitXor, Not};
 
-const FILE_A: Bitboard = Bitboard(0x8080808080808080);
-const FILE_B: Bitboard = Bitboard(0x4040404040404040);
-const FILE_C: Bitboard = Bitboard(0x2020202020202020);
-const FILE_D: Bitboard = Bitboard(0x1010101010101010);
-const FILE_E: Bitboard = Bitboard(0x0808080808080808);
-const FILE_F: Bitboard = Bitboard(0x0404040404040404);
-const FILE_G: Bitboard = Bitboard(0x0202020202020202);
-const FILE_H: Bitboard = Bitboard(0x0101010101010101);
+const FILE_A: Bitboard = Bitboard(0x0101010101010101);
+const FILE_B: Bitboard = Bitboard(0x0202020202020202);
+const FILE_C: Bitboard = Bitboard(0x0404040404040404);
+const FILE_D: Bitboard = Bitboard(0x0808080808080808);
+const FILE_E: Bitboard = Bitboard(0x1010101010101010);
+const FILE_F: Bitboard = Bitboard(0x2020202020202020);
+const FILE_G: Bitboard = Bitboard(0x4040404040404040);
+const FILE_H: Bitboard = Bitboard(0x8080808080808080);
 
 const RANK_1: Bitboard = Bitboard(0x00000000000000FF);
 const RANK_2: Bitboard = Bitboard(0x000000000000FF00);
@@ -26,14 +26,14 @@ pub struct Bitboard(pub u64);
 pub struct Square(pub u8);
 
 pub enum Direction {
-    North,
-    South,
-    East,
-    West,
-    NorthEast,
-    NorthWest,
-    SouthEast,
-    SouthWest,
+    North = 8,
+    South = -8,
+    East = -1,
+    West = 1,
+    NorthEast = 9,
+    NorthWest = 7,
+    SouthEast = -7,
+    SouthWest = -9,
 }
 
 impl Bitboard {
@@ -73,12 +73,12 @@ impl Bitboard {
         match direction {
             Direction::North => Bitboard((self.0 & 0x00FFFFFFFFFFFFFF) << 8),
             Direction::South => Bitboard((self.0 & 0xFFFFFFFFFFFFFF00) >> 8),
-            Direction::East => Bitboard((self.0 & 0xFEFEFEFEFEFEFEFE) >> 1),
-            Direction::West => Bitboard((self.0 & 0x7F7F7F7F7F7F7F7F) << 1),
-            Direction::NorthEast => Bitboard((self.0 & 0x00FEFEFEFEFEFEFE) << 7),
-            Direction::NorthWest => Bitboard((self.0 & 0x007F7F7F7F7F7F7F) << 9),
-            Direction::SouthEast => Bitboard((self.0 & 0xFEFEFEFEFEFEFE00) >> 9),
-            Direction::SouthWest => Bitboard((self.0 & 0x7F7F7F7F7F7F7F00) >> 7),
+            Direction::East => Bitboard((self.0 & 0x7F7F7F7F7F7F7F7F) << 1),
+            Direction::West => Bitboard((self.0 & 0xFEFEFEFEFEFEFEFE) >> 1),
+            Direction::NorthEast => Bitboard((self.0 & 0x007F7F7F7F7F7F7F) << 9),
+            Direction::NorthWest => Bitboard((self.0 & 0x00FEFEFEFEFEFEFE) << 7),
+            Direction::SouthEast => Bitboard((self.0 & 0x7F7F7F7F7F7F7F00) >> 7),
+            Direction::SouthWest => Bitboard((self.0 & 0xFEFEFEFEFEFEFE00) >> 9),
         }
     }
 }
