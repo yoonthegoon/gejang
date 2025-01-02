@@ -9,5 +9,5 @@ A free and incomplete UCI chess engine.
 ## Installation
 
 ```shell
-cargo install --git https://github.com/yoonthegoon/gejang --tag v0.2.0
+cargo install --git https://github.com/yoonthegoon/gejang --tag v0.1.0
 ```
