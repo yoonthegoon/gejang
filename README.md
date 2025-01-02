@@ -1,6 +1,6 @@
 # Gejang
 
-<img src="/assets/logo.svg" alt="Gejang logo" width="148">
+<img src="/assets/logo.svg" alt="Gejang logo" width="144">
 
 A free and incomplete UCI chess engine.
 
