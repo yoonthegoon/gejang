@@ -49,8 +49,6 @@ impl Bitboard {
         Bitboard(1 << square.0)
     }
 
-    // TODO: implement fill methods
-
     pub fn ls1b(&self) -> Option<Square> {
         if self.0 == 0 {
             return None;
