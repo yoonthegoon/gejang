@@ -1,3 +1,4 @@
+mod bitboard;
 mod error;
 mod result;
 
