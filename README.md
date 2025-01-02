@@ -1,10 +1,13 @@
-# Gejang
+<div align="center">
+  <h1>Gejang</h1>
 
-<img src="/assets/logo.svg" alt="Gejang logo" width="144">
+  <img src="/assets/logo.svg" alt="Gejang Logo" width="144" height="144">
 
-A free and incomplete UCI chess engine.
+  <p>A free and incomplete UCI chess engine.</p>
 
-[![GitHub Release](https://img.shields.io/github/v/release/yoonthegoon/gejang?include_prereleases)](https://github.com/yoonthegoon/gejang/releases/latest) [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/yoonthegoon/gejang/rust.yml)](https://github.com/yoonthegoon/gejang/actions)
+  <a href="https://github.com/yoonthegoon/gejang/releases/latest"><img src="https://img.shields.io/github/v/release/yoonthegoon/gejang?include_prereleases" alt="GitHub Release"></a>
+  <a href="https://github.com/yoonthegoon/gejang/actions"><img src="https://img.shields.io/github/actions/workflow/status/yoonthegoon/gejang/rust.yml" alt="GitHub Actions Workflow Status"></a>
+</div>
 
 ## Installation
 
