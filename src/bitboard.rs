@@ -19,7 +19,7 @@ const RANK_6: Bitboard = Bitboard(0x0000FF0000000000);
 const RANK_7: Bitboard = Bitboard(0x00FF000000000000);
 const RANK_8: Bitboard = Bitboard(0xFF00000000000000);
 
-#[derive(Debug, Clone, Copy, Eq, PartialEq)]
+#[derive(Clone, Copy, Eq, PartialEq)]
 pub struct Bitboard(pub u64);
 
 #[derive(Debug, Clone, Copy, Eq, PartialEq)]
