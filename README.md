@@ -79,7 +79,7 @@ Once the project is more mature, contributions will be welcome.
 
 ## License
 
-[GNU GPLv3][license]
+[![GNU GPLv3][gnu-gplv3]][license]
 
 
 [gejang-logo]: /assets/logo.svg
@@ -97,5 +97,7 @@ Once the project is more mature, contributions will be welcome.
 [new-issue]: https://github.com/yoonthegoon/gejang/issues/new/choose
 
 [new-discussion]: https://github.com/yoonthegoon/gejang/discussions/new/choose
+
+[gnu-gplv3]: /assets/gpl-v3-logo.svg
 
 [license]: LICENSE
