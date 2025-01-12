@@ -1,42 +1,10 @@
 use crate::error::Error;
-use std::fmt::{Debug, Display, Formatter};
+use crate::result::Result;
+use crate::types::enums::Direction;
+use crate::types::structs::{Bitboard, Square};
+use std::fmt::{Debug, Formatter};
 use std::ops::{BitAnd, BitOr, BitOrAssign, BitXor, Not};
 use std::str::FromStr;
-
-const FILE_A: Bitboard = Bitboard(0x0101010101010101);
-const FILE_B: Bitboard = Bitboard(0x0202020202020202);
-const FILE_C: Bitboard = Bitboard(0x0404040404040404);
-const FILE_D: Bitboard = Bitboard(0x0808080808080808);
-const FILE_E: Bitboard = Bitboard(0x1010101010101010);
-const FILE_F: Bitboard = Bitboard(0x2020202020202020);
-const FILE_G: Bitboard = Bitboard(0x4040404040404040);
-const FILE_H: Bitboard = Bitboard(0x8080808080808080);
-
-const RANK_1: Bitboard = Bitboard(0x00000000000000FF);
-const RANK_2: Bitboard = Bitboard(0x000000000000FF00);
-const RANK_3: Bitboard = Bitboard(0x0000000000FF0000);
-const RANK_4: Bitboard = Bitboard(0x00000000FF000000);
-const RANK_5: Bitboard = Bitboard(0x000000FF00000000);
-const RANK_6: Bitboard = Bitboard(0x0000FF0000000000);
-const RANK_7: Bitboard = Bitboard(0x00FF000000000000);
-const RANK_8: Bitboard = Bitboard(0xFF00000000000000);
-
-#[derive(Clone, Copy, Eq, PartialEq)]
-pub struct Bitboard(pub u64);
-
-#[derive(Debug, Clone, Copy, Eq, PartialEq)]
-pub struct Square(pub u8);
-
-pub enum Direction {
-    North = 8,
-    South = -8,
-    East = -1,
-    West = 1,
-    NorthEast = 9,
-    NorthWest = 7,
-    SouthEast = -7,
-    SouthWest = -9,
-}
 
 impl Bitboard {
     pub fn empty() -> Self {
@@ -83,41 +51,9 @@ impl Bitboard {
     }
 }
 
-impl Square {
-    pub fn new(rank: u8, file: u8) -> Self {
-        Square(rank * 8 + file)
-    }
-
-    pub fn rank(&self) -> u8 {
-        self.0 / 8
-    }
-
-    pub fn file(&self) -> u8 {
-        self.0 % 8
-    }
-}
-
 impl Debug for Bitboard {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(f, "{:#018x}", self.0)
-    }
-}
-
-impl Display for Square {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        let file = match self.file() {
-            0 => 'a',
-            1 => 'b',
-            2 => 'c',
-            3 => 'd',
-            4 => 'e',
-            5 => 'f',
-            6 => 'g',
-            7 => 'h',
-            _ => unreachable!(),
-        };
-        let rank = self.rank() + 1;
-        write!(f, "{}{}", file, rank)
     }
 }
 
@@ -162,7 +98,7 @@ impl Not for Bitboard {
 impl FromStr for Square {
     type Err = Error;
 
-    fn from_str(s: &str) -> Result<Self, Self::Err> {
+    fn from_str(s: &str) -> Result<Self> {
         if s.len() != 2 {
             return Err(Error::ParseError(s.to_string()));
         }

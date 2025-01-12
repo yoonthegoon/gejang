@@ -1,12 +1,11 @@
-use crate::position::Position;
+use crate::types::structs::Position;
 
-mod bitboard;
 mod error;
-mod move_generation;
-mod position;
+mod impls;
 mod result;
+mod types;
 
 fn main() {
-    let game = Position::from_fen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1").unwrap();
+    let game = Position::new();
     println!("{:?}", game);
 }
