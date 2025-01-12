@@ -14,7 +14,7 @@ A free and incomplete UCI chess engine.
 ## Installation
 
 ```shell
-cargo install --git https://github.com/yoonthegoon/gejang
+cargo install --git https://github.com/yoonthegoon/gejang.git
 ```
 
 [gejang-logo]: /assets/logo.svg
