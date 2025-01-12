@@ -14,22 +14,18 @@ A free and <ins>⚠️ incomplete ⚠️</ins> UCI chess engine.
 
 ## Installation
 
-### Requirements
-
-- [Rust][rust-install]
-
-### Install with Cargo
-
 ```shell
 cargo install --git https://github.com/yoonthegoon/gejang.git
 ```
 
-### Build from Source
+### Requirements
+
+- [Rust][rust-install]
+
+### Uninstall
 
 ```shell
-git clone https://github.com/yoonthegoon/gejang.git
-cd gejang
-cargo build -r
+cargo uninstall gejang
 ```
 
 ## Usage
@@ -43,14 +39,12 @@ This section refers to how Gejang will be used once it is complete.
 
 Gejang is normally used with a GUI that supports the UCI protocol.
 Refer to your GUI's documentation on how to use a UCI engine.
-
-Gejang can typically be found in `~/.cargo/bin/gejang` if installed with Cargo or `./target/release/gejang` if built
-from source.
+Use `which gejang` to find the path to the executable.
 
 Gejang can also be used in the terminal by running `gejang` and entering UCI commands.
 
 ```shell
-$ gejang # or "cargo run -r" if built from source
+$ gejang
 > uci
 id name Gejang
 id author Yunis Yilmaz
