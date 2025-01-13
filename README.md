@@ -14,7 +14,7 @@ A free and <ins>⚠️ incomplete ⚠️</ins> UCI chess engine.
 
 ## Requirements
 
-- [Rust][rust-install]
+- [Cargo][cargo]
 
 ## Installation
 
@@ -93,7 +93,7 @@ Once the project is more mature, contributions will be welcome.
 
 [github-actions]: https://github.com/yoonthegoon/gejang/actions
 
-[rust-install]: https://www.rust-lang.org/tools/install
+[cargo]: https://doc.rust-lang.org/cargo/getting-started/installation.html
 
 [new-issue]: https://github.com/yoonthegoon/gejang/issues/new/choose
 
