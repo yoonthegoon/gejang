@@ -12,20 +12,14 @@ A free and <ins>⚠️ incomplete ⚠️</ins> UCI chess engine.
 
 </div>
 
+## Requirements
+
+- [Rust][rust-install]
+
 ## Installation
 
 ```shell
 cargo install --git https://github.com/yoonthegoon/gejang.git
-```
-
-### Requirements
-
-- [Rust][rust-install]
-
-### Uninstall
-
-```shell
-cargo uninstall gejang
 ```
 
 ## Usage
@@ -77,9 +71,16 @@ If you simply have a question, please [open a discussion][new-discussion].
 This project is currently in its early stages and not yet open to contributions.
 Once the project is more mature, contributions will be welcome.
 
+## Acknowledgment
+
+- [Chess Programming Wiki][chess-programming-wiki]
+- [Sebastian Lague's Chess Coding Adventure][chess-coding-adventure]
+- [Stockfish][stockfish]
+- [Chess Engine Testers Discord Server][chess-engine-testers]
+
 ## License
 
-[![GNU GPLv3][gnu-gplv3]][license]
+[![GNU GPLv3][gpl-v3-logo]](LICENSE)
 
 
 [gejang-logo]: /assets/logo.svg
@@ -98,6 +99,12 @@ Once the project is more mature, contributions will be welcome.
 
 [new-discussion]: https://github.com/yoonthegoon/gejang/discussions/new/choose
 
-[gnu-gplv3]: /assets/gpl-v3-logo.svg
+[chess-programming-wiki]: https://www.chessprogramming.org/Main_Page
 
-[license]: LICENSE
+[chess-coding-adventure]: https://github.com/SebLague/Chess-Coding-Adventure
+
+[stockfish]: https://github.com/official-stockfish/Stockfish
+
+[chess-engine-testers]: https://discord.gg/EN25UBJ8C5
+
+[gpl-v3-logo]: /assets/gpl-v3-logo.svg
