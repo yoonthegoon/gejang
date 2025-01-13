@@ -80,7 +80,7 @@ Once the project is more mature, contributions will be welcome.
 
 ## License
 
-[![GNU GPLv3][gpl-v3-logo]](LICENSE)
+[![GNU GPLv3][gpl-v3-logo]][license]
 
 
 [gejang-logo]: /assets/logo.svg
@@ -108,3 +108,5 @@ Once the project is more mature, contributions will be welcome.
 [chess-engine-testers]: https://discord.gg/EN25UBJ8C5
 
 [gpl-v3-logo]: /assets/gpl-v3-logo.svg
+
+[license]: LICENSE
