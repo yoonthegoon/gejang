@@ -6,7 +6,53 @@ use std::str::FromStr;
 
 impl Display for PiecePlacementData {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        todo!()
+        let mut result = String::new();
+
+        for rank in (0..8).rev() {
+            let mut empty_count = 0;
+
+            for file in 0..8 {
+                let square = Square::new(rank, file);
+                let mut piece_found = false;
+
+                for (i, bitboard) in self.0.iter().enumerate() {
+                    if bitboard.0 & (1 << square.0) != 0 {
+                        if empty_count > 0 {
+                            result.push_str(&empty_count.to_string());
+                            empty_count = 0;
+                        }
+                        let piece = match i {
+                            0 => 'K',
+                            1 => 'Q',
+                            2 => 'R',
+                            3 => 'B',
+                            4 => 'N',
+                            5 => 'P',
+                            6 => 'k',
+                            7 => 'q',
+                            8 => 'r',
+                            9 => 'b',
+                            10 => 'n',
+                            11 => 'p',
+                            _ => unreachable!(),
+                        };
+                        result.push(piece);
+                        piece_found = true;
+                        break;
+                    }
+                }
+                if !piece_found {
+                    empty_count += 1;
+                }
+            }
+            if empty_count > 0 {
+                result.push_str(&empty_count.to_string());
+            }
+            if rank > 0 {
+                result.push('/');
+            }
+        }
+        write!(f, "{}", result)
     }
 }
 
