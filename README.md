@@ -47,7 +47,7 @@ uciok
 > isready
 readyok
 
-> position startpos moves e2e4 e7e5
+> position startpos
 > go depth 10
 ...
 bestmove e2e4
