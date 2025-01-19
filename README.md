@@ -1,4 +1,4 @@
-<!--suppress HtmlDeprecatedAttribute -->
+<!-- markdownlint-disable MD033 MD041 -->
 <div align="center">
 
 ![Gejang Logo][gejang-logo]
@@ -82,31 +82,19 @@ Once the project is more mature, contributions will be welcome.
 
 [![GNU GPLv3][gpl-v3-logo]][license]
 
+<!-- markdownlint-enable MD033 MD041 -->
 
-[gejang-logo]: /assets/logo.svg
-
-[github-release]: https://img.shields.io/github/v/release/yoonthegoon/gejang?include_prereleases
-
-[latest-release]: https://github.com/yoonthegoon/gejang/releases/latest
-
+[cargo]:                          https://doc.rust-lang.org/cargo/getting-started/installation.html
+[chess-coding-adventure]:         https://github.com/SebLague/Chess-Coding-Adventure
+[chess-engine-testers]:           https://discord.gg/EN25UBJ8C5
+[chess-programming-wiki]:         https://www.chessprogramming.org/Main_Page
+[gejang-logo]:                    /assets/logo.svg
+[github-actions]:                 https://github.com/yoonthegoon/gejang/actions
 [github-actions-workflow-status]: https://img.shields.io/github/actions/workflow/status/yoonthegoon/gejang/rust.yml
-
-[github-actions]: https://github.com/yoonthegoon/gejang/actions
-
-[cargo]: https://doc.rust-lang.org/cargo/getting-started/installation.html
-
-[new-issue]: https://github.com/yoonthegoon/gejang/issues/new/choose
-
-[new-discussion]: https://github.com/yoonthegoon/gejang/discussions/new/choose
-
-[chess-programming-wiki]: https://www.chessprogramming.org/Main_Page
-
-[chess-coding-adventure]: https://github.com/SebLague/Chess-Coding-Adventure
-
-[stockfish]: https://github.com/official-stockfish/Stockfish
-
-[chess-engine-testers]: https://discord.gg/EN25UBJ8C5
-
-[gpl-v3-logo]: /assets/gpl-v3-logo.svg
-
-[license]: LICENSE
+[github-release]:                 https://img.shields.io/github/v/release/yoonthegoon/gejang?include_prereleases
+[gpl-v3-logo]:                    /assets/gpl-v3-logo.svg
+[latest-release]:                 https://github.com/yoonthegoon/gejang/releases/latest
+[license]:                        LICENSE
+[new-discussion]:                 https://github.com/yoonthegoon/gejang/discussions/new/choose
+[new-issue]:                      https://github.com/yoonthegoon/gejang/issues/new/choose
+[stockfish]:                      https://github.com/official-stockfish/Stockfish
