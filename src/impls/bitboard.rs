@@ -1,5 +1,6 @@
 use crate::error::Error;
 use crate::result::Result;
+use crate::types::consts::{FILE_A, FILE_H};
 use crate::types::enums::Direction;
 use crate::types::structs::{Bitboard, Square};
 use std::fmt::{Debug, Formatter};
@@ -19,18 +20,25 @@ impl Bitboard {
         Bitboard(1 << square.0)
     }
 
+    #[inline]
+    pub fn set_square(&mut self, square_idx: u8) {
+        self.0 |= 1u64 << square_idx;
+    }
+
     pub fn ls1b(&self) -> Option<Square> {
         if self.0 == 0 {
-            return None;
+            None
+        } else {
+            Some(Square(self.0.trailing_zeros() as u8))
         }
-        Some(Square(self.0.trailing_zeros() as u8))
     }
 
     pub fn ms1b(&self) -> Option<Square> {
         if self.0 == 0 {
-            return None;
+            None
+        } else {
+            Some(Square(63 - self.0.leading_zeros() as u8))
         }
-        Some(Square(63 - self.0.leading_zeros() as u8))
     }
 
     pub fn pop_count(&self) -> u32 {
@@ -39,14 +47,14 @@ impl Bitboard {
 
     pub fn shift(&self, direction: Direction) -> Bitboard {
         match direction {
-            Direction::North => Bitboard((self.0 & 0x00FFFFFFFFFFFFFF) << 8),
-            Direction::South => Bitboard((self.0 & 0xFFFFFFFFFFFFFF00) >> 8),
-            Direction::East => Bitboard((self.0 & 0x7F7F7F7F7F7F7F7F) << 1),
-            Direction::West => Bitboard((self.0 & 0xFEFEFEFEFEFEFEFE) >> 1),
-            Direction::NorthEast => Bitboard((self.0 & 0x007F7F7F7F7F7F7F) << 9),
-            Direction::NorthWest => Bitboard((self.0 & 0x00FEFEFEFEFEFEFE) << 7),
-            Direction::SouthEast => Bitboard((self.0 & 0x7F7F7F7F7F7F7F00) >> 7),
-            Direction::SouthWest => Bitboard((self.0 & 0xFEFEFEFEFEFEFE00) >> 9),
+            Direction::North => Bitboard(self.0 << 8),
+            Direction::South => Bitboard(self.0 >> 8),
+            Direction::East => Bitboard((self.0 & !FILE_H.0) << 1),
+            Direction::West => Bitboard((self.0 & !FILE_A.0) >> 1),
+            Direction::NorthEast => Bitboard((self.0 & !FILE_H.0) << 9),
+            Direction::NorthWest => Bitboard((self.0 & !FILE_A.0) << 7),
+            Direction::SouthEast => Bitboard((self.0 & !FILE_H.0) >> 7),
+            Direction::SouthWest => Bitboard((self.0 & !FILE_A.0) >> 9),
         }
     }
 }

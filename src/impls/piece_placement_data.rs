@@ -61,41 +61,65 @@ impl FromStr for PiecePlacementData {
 
     fn from_str(s: &str) -> Result<Self> {
         let mut ppd = [Bitboard::empty(); 12];
-        let mut rank = 7;
-        for line in s.lines() {
-            let mut file = 0;
-            for c in line.chars() {
-                match c {
-                    'K' => ppd[0] |= Bitboard::from_square(Square::new(rank, file)),
-                    'Q' => ppd[1] |= Bitboard::from_square(Square::new(rank, file)),
-                    'R' => ppd[2] |= Bitboard::from_square(Square::new(rank, file)),
-                    'B' => ppd[3] |= Bitboard::from_square(Square::new(rank, file)),
-                    'N' => ppd[4] |= Bitboard::from_square(Square::new(rank, file)),
-                    'P' => ppd[5] |= Bitboard::from_square(Square::new(rank, file)),
-                    'k' => ppd[6] |= Bitboard::from_square(Square::new(rank, file)),
-                    'q' => ppd[7] |= Bitboard::from_square(Square::new(rank, file)),
-                    'r' => ppd[8] |= Bitboard::from_square(Square::new(rank, file)),
-                    'b' => ppd[9] |= Bitboard::from_square(Square::new(rank, file)),
-                    'n' => ppd[10] |= Bitboard::from_square(Square::new(rank, file)),
-                    'p' => ppd[11] |= Bitboard::from_square(Square::new(rank, file)),
+        let mut square_idx = 56; // Start at a8 (7th rank, 0th file)
+        let mut parts = s.split('/');
+
+        if s.chars().filter(|&c| c == '/').count() != 7 {
+            return Err(Error::ParseError("Invalid number of ranks".to_string()));
+        }
+
+        let mut set_piece = |piece_idx: usize, square_idx: &mut u8| {
+            ppd[piece_idx].set_square(*square_idx);
+            *square_idx += 1;
+            1
+        };
+
+        for rank in 0..8 {
+            let Some(rank_str) = parts.next() else {
+                return Err(Error::ParseError("Missing rank data".to_string()));
+            };
+
+            let mut file_count = 0;
+            let mut chars = rank_str.chars();
+
+            while let Some(c) = chars.next() {
+                file_count += match c {
+                    'K' => set_piece(0, &mut square_idx),
+                    'Q' => set_piece(1, &mut square_idx),
+                    'R' => set_piece(2, &mut square_idx),
+                    'B' => set_piece(3, &mut square_idx),
+                    'N' => set_piece(4, &mut square_idx),
+                    'P' => set_piece(5, &mut square_idx),
+                    'k' => set_piece(6, &mut square_idx),
+                    'q' => set_piece(7, &mut square_idx),
+                    'r' => set_piece(8, &mut square_idx),
+                    'b' => set_piece(9, &mut square_idx),
+                    'n' => set_piece(10, &mut square_idx),
+                    'p' => set_piece(11, &mut square_idx),
                     '1'..='8' => {
-                        file += c.to_digit(10).unwrap() as u8;
-                        continue;
-                    }
-                    '/' => {
-                        if file != 8 {
-                            return Err(Error::ParseError(s.to_string()));
+                        let empty_count = (c as u8) - b'0';
+                        square_idx += empty_count;
+                        if file_count + empty_count > 8 {
+                            return Err(Error::ParseError("Too many squares in rank".to_string()));
                         }
-                        rank -= 1;
-                        file = 0;
-                        continue;
+                        empty_count
                     }
-                    _ => return Err(Error::ParseError(s.to_string())),
-                }
-                file += 1;
+                    _ => return Err(Error::ParseError("Invalid character".to_string())),
+                };
+            }
+            if file_count != 8 {
+                return Err(Error::ParseError(
+                    "Invalid number of squares in rank".to_string(),
+                ));
+            }
+            if rank < 7 {
+                square_idx = 48 - (rank * 8);
             }
         }
-        // TODO: check all squares have been gone over
-        Ok(PiecePlacementData(ppd))
+        if parts.next().is_some() {
+            Err(Error::ParseError("Too many ranks".to_string()))
+        } else {
+            Ok(PiecePlacementData(ppd))
+        }
     }
 }
