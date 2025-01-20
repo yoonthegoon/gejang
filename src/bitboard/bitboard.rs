@@ -78,3 +78,61 @@ impl Debug for Bitboard {
         write!(f, "{:#018x}", self.0)
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_from_square() {
+        for i in 0..64 {
+            let square = Square::from_u8(i).unwrap();
+            let bitboard = Bitboard::from_square(square);
+            assert_eq!(bitboard.to_u64(), 1 << i);
+        }
+    }
+
+    #[test]
+    fn test_ls1b() {
+        let bitboard = Bitboard::from_square(Square::from_u8(0).unwrap());
+        assert_eq!(bitboard.ls1b(), Some(Square::from_u8(0).unwrap()));
+        let empty_board = Bitboard::EMPTY;
+        assert_eq!(empty_board.ls1b(), None);
+    }
+
+    #[test]
+    fn test_ms1b() {
+        let bitboard = Bitboard::from_square(Square::from_u8(63).unwrap());
+        assert_eq!(bitboard.ms1b(), Some(Square::from_u8(63).unwrap()));
+        let empty_board = Bitboard::EMPTY;
+        assert_eq!(empty_board.ms1b(), None);
+    }
+
+    #[test]
+    fn test_pop_count() {
+        let mut bitboard = Bitboard::EMPTY;
+        assert_eq!(bitboard.pop_count(), 0);
+        bitboard.xor_square(Square::from_u8(0).unwrap());
+        assert_eq!(bitboard.pop_count(), 1);
+        bitboard.xor_square(Square::from_u8(1).unwrap());
+        assert_eq!(bitboard.pop_count(), 2);
+        bitboard.xor_square(Square::from_u8(0).unwrap());
+        assert_eq!(bitboard.pop_count(), 1);
+    }
+
+    #[test]
+    fn test_to_u64() {
+        let bitboard = Bitboard::from_square(Square::from_u8(0).unwrap());
+        assert_eq!(bitboard.to_u64(), 1);
+        let full_board = Bitboard::UNIVERSE;
+        assert_eq!(full_board.to_u64(), u64::MAX);
+    }
+
+    #[test]
+    fn test_debug() {
+        let bitboard = Bitboard::from_square(Square::from_u8(0).unwrap());
+        assert_eq!(format!("{:?}", bitboard), "0x0000000000000001");
+        let full_board = Bitboard::UNIVERSE;
+        assert_eq!(format!("{:?}", full_board), "0xffffffffffffffff");
+    }
+}
