@@ -1,3 +1,11 @@
+## ⚠️ Status ⚠️
+
+Gejang is incomplete and not yet ready for use. \
+There are still many features that make a chess engine missing. \
+The [usage](#usage) section only currently descirbes how Gejang is planned to be used.
+
+---
+
 <!-- markdownlint-disable MD033 MD041 -->
 <div align="center">
 
@@ -5,7 +13,7 @@
 
 ### Gejang
 
-A free and <ins>⚠️ incomplete ⚠️</ins> UCI chess engine.
+A free UCI chess engine.
 
 [![GitHub Release][github-release]][latest-release]
 [![GitHub Actions][github-actions-workflow-status]][github-actions]
@@ -23,13 +31,6 @@ cargo install --git https://github.com/yoonthegoon/gejang.git
 ```
 
 ## Usage
-
-### ⚠️ Warning ⚠️
-
-Gejang is incomplete and not yet ready for use.
-This section refers to how Gejang will be used once it is complete.
-
----
 
 Gejang is normally used with a GUI that supports the UCI protocol.
 Refer to your GUI's documentation on how to use a UCI engine.
