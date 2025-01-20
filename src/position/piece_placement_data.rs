@@ -6,7 +6,7 @@ use crate::{
     result::Result,
 };
 
-// K Q R B N P k q r b n p
+/// K Q R B N P k q r b n p
 pub struct PiecePlacementData(pub [Bitboard; 12]);
 
 impl Display for PiecePlacementData {
