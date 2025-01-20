@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD033 MD041 -->
 ## ⚠️ Status ⚠️
 
 Gejang is incomplete and not yet ready for use. \
@@ -6,7 +7,6 @@ The [usage](#usage) section only currently descirbes how Gejang is planned to be
 
 ---
 
-<!-- markdownlint-disable MD033 MD041 -->
 <div align="center">
 
 ![Gejang Logo][gejang-logo]
@@ -20,11 +20,13 @@ A free UCI chess engine.
 
 </div>
 
-## Requirements
+## Installation
+
+### Requirements
 
 - [Cargo][cargo]
 
-## Installation
+### Installation Instructions
 
 ```shell
 cargo install --git https://github.com/yoonthegoon/gejang.git
@@ -60,6 +62,8 @@ bestmove g1f3
 
 > quit
 ```
+
+For more information on the UCI protocol, the specification can be found [here][uci-specification].
 
 ## Support
 
@@ -99,3 +103,4 @@ Once the project is more mature, contributions will be welcome.
 [new-discussion]:                 https://github.com/yoonthegoon/gejang/discussions/new/choose
 [new-issue]:                      https://github.com/yoonthegoon/gejang/issues/new/choose
 [stockfish]:                      https://github.com/official-stockfish/Stockfish
+[uci-specification]:              engine-interface_2.txt
