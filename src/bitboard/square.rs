@@ -5,7 +5,7 @@ use std::{
 
 use crate::{error::Error, result::Result};
 
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub struct Square(u8);
 
 impl Square {
@@ -87,5 +87,89 @@ impl FromStr for Square {
             _ => return Err(Error::ParseError(s.to_string())),
         };
         Ok(Square(file + rank * 8))
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_new() {
+        for rank in 0..8 {
+            for file in 0..8 {
+                let square = Square::new(rank, file);
+                assert!(square.is_some());
+                assert_eq!(square.unwrap().rank(), rank);
+                assert_eq!(square.unwrap().file(), file);
+            }
+        }
+        assert!(Square::new(8, 0).is_none());
+        assert!(Square::new(0, 8).is_none());
+        assert!(Square::new(8, 8).is_none());
+    }
+
+    #[test]
+    fn test_from_u8() {
+        for i in 0..64 {
+            let square = Square::from_u8(i);
+            assert!(square.is_some());
+            assert_eq!(square.unwrap().to_u8(), i);
+        }
+        assert!(Square::from_u8(64).is_none());
+        assert!(Square::from_u8(255).is_none());
+    }
+
+    #[test]
+    fn test_file() {
+        for i in 0..64 {
+            let square = Square(i);
+            assert_eq!(square.file(), i % 8);
+        }
+    }
+
+    #[test]
+    fn test_rank() {
+        for i in 0..64 {
+            let square = Square(i);
+            assert_eq!(square.rank(), i / 8);
+        }
+    }
+
+    #[test]
+    fn test_to_u8() {
+        for i in 0..64 {
+            let square = Square(i);
+            assert_eq!(square.to_u8(), i);
+        }
+    }
+
+    #[test]
+    fn test_display() {
+        for rank in 0..8 {
+            for file in 0..8 {
+                let square = Square(file + rank * 8);
+                let expected = format!("{}{}", ('a' as u8 + file) as char, rank + 1);
+                assert_eq!(format!("{}", square), expected);
+            }
+        }
+    }
+
+    #[test]
+    fn test_parse() {
+        for rank in 0..8 {
+            for file in 0..8 {
+                let square = Square(file + rank * 8);
+                let expected = format!("{}{}", ('a' as u8 + file) as char, rank + 1);
+                assert_eq!(Square::from_str(&expected).unwrap(), square);
+            }
+        }
+        assert!(Square::from_str("").is_err());
+        assert!(Square::from_str("a").is_err());
+        assert!(Square::from_str("a1b").is_err());
+        assert!(Square::from_str("i1").is_err());
+        assert!(Square::from_str("01").is_err());
+        assert!(Square::from_str("a0").is_err());
+        assert!(Square::from_str("a9").is_err());
     }
 }
