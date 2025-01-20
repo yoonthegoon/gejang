@@ -1,11 +1,11 @@
-use crate::types::structs::Position;
+use crate::position::Position;
 
+mod bitboard;
 mod error;
-mod impls;
+mod position;
 mod result;
-mod types;
 
 fn main() {
     let game = Position::new();
-    println!("{:?}", game);
+    println!("{}", game);
 }

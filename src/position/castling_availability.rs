@@ -1,35 +1,40 @@
+use std::{fmt::Display, str::FromStr};
+
 use crate::error::Error;
-use crate::result::Result;
-use crate::types::structs::CastlingAvailability;
-use std::fmt::{Display, Formatter};
-use std::str::FromStr;
+
+pub struct CastlingAvailability {
+    pub white_king_side: bool,
+    pub white_queen_side: bool,
+    pub black_king_side: bool,
+    pub black_queen_side: bool,
+}
 
 impl Display for CastlingAvailability {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        let mut str = String::new();
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let mut buf = String::new();
         if self.white_king_side {
-            str.push('K');
+            buf.push('K');
         }
         if self.white_queen_side {
-            str.push('Q');
+            buf.push('Q');
         }
         if self.black_king_side {
-            str.push('k');
+            buf.push('k');
         }
         if self.black_queen_side {
-            str.push('q');
+            buf.push('q');
         }
-        if str.is_empty() {
-            str.push('-');
+        if buf.is_empty() {
+            buf.push('-');
         }
-        write!(f, "{}", str)
+        write!(f, "{}", buf)
     }
 }
 
 impl FromStr for CastlingAvailability {
     type Err = Error;
 
-    fn from_str(s: &str) -> Result<Self> {
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
         let mut white_king_side = false;
         let mut white_queen_side = false;
         let mut black_king_side = false;

@@ -1,5 +1,6 @@
 use std::num::ParseIntError;
 
+#[allow(dead_code)]
 #[derive(Debug)]
 pub enum Error {
     ParseError(String),
