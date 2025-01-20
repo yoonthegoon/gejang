@@ -4,6 +4,7 @@ use super::{Direction, Square};
 
 pub struct Bitboard(u64);
 
+#[allow(dead_code)] // TODO: remove
 impl Bitboard {
     pub const EMPTY: Self = Bitboard(u64::MIN);
     pub const UNIVERSE: Self = Bitboard(u64::MAX);

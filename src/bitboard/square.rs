@@ -17,6 +17,7 @@ impl Square {
         }
     }
 
+    #[allow(dead_code)] // TODO: remove
     pub fn from_u8(i: u8) -> Option<Self> {
         if i < 64 {
             Some(Square(i))
