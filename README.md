@@ -71,6 +71,12 @@ If you find something isn't working or doesn't seem right, or want to suggest a 
 please [open an issue][new-issue].
 If you simply have a question, please [open a discussion][new-discussion].
 
+## Documentation
+
+For detailed information about the project architecture and design, please refer to the documentation in the [`docs/`](docs/) folder:
+
+- [Module Architecture](docs/MODULE_ARCHITECTURE.md) - Detailed overview of the codebase structure and design principles
+
 ## Contributing
 
 This project is currently in its early stages and not yet open to contributions.
